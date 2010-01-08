@@ -246,6 +246,8 @@ module Rufus::Tokyo
     def []= (pk, h_or_a)
 
       pk = pk.to_s
+      # Convert to Hash first (replicate behaviour of Rufus::Edo::Table)
+      h_or_a = h_or_a.is_a?(Hash) ? h_or_a : Hash[*h_or_a]
       h_or_a = Rufus::Tokyo.h_or_a_to_s(h_or_a)
 
       m = Rufus::Tokyo::Map[h_or_a]
